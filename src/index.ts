@@ -10,12 +10,12 @@ const back: HTMLButtonElement = document.querySelector(".back")!;
 const URL = "https://course-api.com/react-store-products";
 
 async function fetchData() {
-    try {
-        const response = await axios.get(URL);
-        displayUserData(response.data);
-    } catch (error) {
-        console.error("Error fetching data:", error);
-    }
+	try {
+		const response = await axios.get(URL);
+		displayUserData(response.data);
+	} catch (error) {
+		console.error("Error fetching data:", error);
+	}
 }
 
 const index = document.createElement("h6");
@@ -24,10 +24,13 @@ index.innerText = "We currently have 22 products";
 imges.append(index);
 
 function displayUserData(data: any[]) {
-    data.forEach((elem) => {
-        // Create a new boxdiv for each product
-        const boxdiv: HTMLDivElement = document.createElement("div");
-        boxdiv.innerHTML = `
+	data.forEach((elem) => {
+		elem.addEventListener("click", () => {
+			console.log("hello");
+		});
+		// Create a new boxdiv for each product
+		const boxdiv: HTMLDivElement = document.createElement("div");
+		boxdiv.innerHTML = `
             <div class="boxes">
                 <img src="${elem.image}">
                 <div class="pies">
@@ -35,27 +38,27 @@ function displayUserData(data: any[]) {
                     <p>${elem.price}$</p>
                 </div>
             </div>`;
-        imges.appendChild(boxdiv);
+		imges.appendChild(boxdiv);
 
-        // Add click event listener
-        boxdiv.addEventListener("click", () => handleProductClick(elem, boxdiv));
-    });
+		// Add click event listener
+		boxdiv.addEventListener("click", () => handleProductClick(elem, boxdiv));
+	});
 }
 
 function handleProductClick(product: any, boxdiv: HTMLDivElement) {
-    imges.style.display = "none";
-    input.style.display = "none";
-    second.style.marginTop = "50px";
-    const main = document.createElement("h6");
-    main.className = "second_me";
-    second.innerHTML = ""; // Clear existing content
-    second.append(main);
+	imges.style.display = "none";
+	input.style.display = "none";
+	second.style.marginTop = "50px";
+	const main = document.createElement("h6");
+	main.className = "second_me";
+	second.innerHTML = ""; // Clear existing content
+	second.append(main);
 
-    const newCreate: HTMLDivElement = document.createElement("div");
-    const backed: HTMLDivElement = document.createElement("div");
-    backed.className = "back";
-    backed.innerText = "👈🏼";
-    newCreate.innerHTML = `
+	const newCreate: HTMLDivElement = document.createElement("div");
+	const backed: HTMLDivElement = document.createElement("div");
+	backed.className = "back";
+	backed.innerText = "👈🏼";
+	newCreate.innerHTML = `
     <div class="secondyou">
     <img src="${product.image}">
     <div class="left">
@@ -66,19 +69,19 @@ function handleProductClick(product: any, boxdiv: HTMLDivElement) {
     <p>👉🏼 Company: ${product.company}</p>
     </div>
     </div>`;
-    second.appendChild(newCreate);
-    second.appendChild(backed);
+	second.appendChild(newCreate);
+	second.appendChild(backed);
 
-    backed.addEventListener("click", () => {
-        second.style.display = "none";
-        imges.style.display = "block";
-        backed.style.display = "none";
-        input.style.display = "block";
-        // Remove the boxdiv from imges
-        imges.removeChild(boxdiv);
-    });
+	backed.addEventListener("click", () => {
+		second.style.display = "none";
+		imges.style.display = "block";
+		backed.style.display = "none";
+		input.style.display = "block";
+		// Remove the boxdiv from imges
+		imges.removeChild(boxdiv);
+	});
 
-    console.log("Product clicked:", product);
+	console.log("Product clicked:", product);
 }
 
 fetchData();
