@@ -8,7 +8,7 @@ const input: HTMLInputElement = document.querySelector(".group")!;
 const loader: HTMLDivElement = document.querySelector(".spinner")!;
 const back: HTMLButtonElement = document.querySelector(".back")!;
 const backed: HTMLDivElement = document.createElement("div");
-const hOne = document.createElement("h1");
+const hOne:HTMLParagraphElement = document.createElement("h1");
 const pink: HTMLDivElement = document.querySelector(".big_pink");
 const home: HTMLParagraphElement = document.querySelector(".home");
 
@@ -47,10 +47,13 @@ function displayUserData(data: any[]) {
         boxdiv.addEventListener("click", () => handleProductClick(elem));
     });
 }
-
+    // console.log("imges:", imges);
+    // console.log("input:", input);
 function handleProductClick(product: any) {
     imges.style.display = "none";
     input.style.display = "none";
+    // imges.style.display = "none";
+    // input.style.display = "none";
     second.style.marginTop = "50px";
     const main = document.createElement("h6");
     main.className = "second_me";
@@ -75,6 +78,7 @@ function handleProductClick(product: any) {
                 <p>👉🏼 Company: ${product.company}</p>
             </div>
         </div>
+
         <div class=""></div>
         </div>`;
     second.appendChild(newCreate);
